@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.example.ibank_mobile",
+      "sha256_cert_fingerprints": ["94:BC:3B:7E:8A:B0:FF:20:3D:EA:A3:DB:54:E7:9C:86:D3:01:66:1F:76:46:8D:05:7E:7C:18:2A:DA:8D:C4:6B"]
+    }
+  }
+]
