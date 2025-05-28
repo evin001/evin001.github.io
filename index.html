@@ -51,7 +51,7 @@
       let iframeChecked = false;
 
       function monitorIframe() {
-        const iframe = document.querySelector('iframe[title="reCAPTCHA"]');
+        const iframe = document.querySelector('iframe');
         if (!iframe) return;
 
         iframe.addEventListener('focus', () => {
