@@ -28,7 +28,7 @@
         const data = JSON.stringify({ type: 'heightHandler', value: height })
 
         if (window.flutter_inappwebview?.callHandler) {
-          window.flutter_inappwebview.callHandler('flutter_channel', data);
+          window.flutter_inappwebview.postMessage(data);
         }
       }
 
@@ -39,7 +39,7 @@
         const data = JSON.stringify({ type: 'captchaToken', value: token })
 
         if (window.flutter_inappwebview?.callHandler) {
-          window.flutter_inappwebview.callHandler('flutter_channel', data);
+          window.flutter_inappwebview.postMessage(data);
         }
       }
     </script>
