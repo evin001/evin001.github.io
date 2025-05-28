@@ -41,8 +41,6 @@
         }
       }
 
-      const timer = setInterval(searchAndObserve, 500)
-
       const searchAndObserve = () => {
         const targetNode = document.getElementById("body > div:last-child");
         console.log(targetNode)
@@ -72,7 +70,15 @@
 
         // Start observing the target node for configured mutations
         observer.observe(document.querySelector(targetNode), config);
+
+        return targetNode
       }
+
+      const timer = setInterval(() => {
+        console.log('run')
+        const node = searchAndObserve()
+        if (node) clearInterval(timer)
+      }, 500)
     </script>
   </body>
 </html>
