@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://www.google.com/recaptcha/api.js"></script>
   </head>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
   <body>
     <form id="form">
       <div class="g-recaptcha"
@@ -14,6 +19,10 @@
     </form>
 
     <script>
+      function setBackgroundColor(color) {
+        document.body.style.backgroundColor = color;
+      }
+
       function sendHeight() {
         const height = document.body.scrollHeight;
         console.log(height)
