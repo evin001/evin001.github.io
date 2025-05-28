@@ -38,10 +38,12 @@
 
       iframe.onload = () => {
         console.log('load')
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-        const body = iframe.querySelector('body')
-        console.log(body)
-      }
+        iframeDocument.addEventListener('click', (e) => {
+          console.log('Клик внутри iframe!', e);
+        });
+      };
 
       function onSubmit(token) {
         const data = JSON.stringify({ type: 'captchaToken', value: token })
