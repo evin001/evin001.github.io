@@ -45,8 +45,15 @@
       window.onload = sendHeight;
       window.addEventListener('resize', sendHeight);
 
-      document.querySelector('.g-recaptcha > div')?.addEventListener('click', () => {
+      const el = document.querySelector('.g-recaptcha > div')
+      console.log(1, el)
+      el?.addEventListener('click', () => {
         console.log('click')
+      })
+
+      window.addEventListener('load', () => {
+        const el = document.querySelector('.g-recaptcha > div')
+        console.log(2, el)
       })
 
       function onSubmit(token) {
