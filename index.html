@@ -45,6 +45,10 @@
       window.onload = sendHeight;
       window.addEventListener('resize', sendHeight);
 
+      document.querySelector('.g-recaptcha > div')?.addEventListener('click', () => {
+        console.log('click')
+      })
+
       function onSubmit(token) {
         const data = JSON.stringify({ type: 'captchaToken', value: token })
         if (window.CaptchaChannel) {
