@@ -19,8 +19,19 @@
     </form>
 
     <script>
+      let targetNode
+
       function setBackgroundColor(color) {
         document.body.style.backgroundColor = color;
+      }
+
+      function setTargetFullHeight() {
+        if (targetNode) {
+          const container = targetNode.querySelector()
+          if (container) {
+            container.style.height = '480px'
+          }
+        }
       }
 
       function sendHeight() {
@@ -49,7 +60,7 @@
       }
 
       const searchAndObserve = () => {
-        const targetNode = document.querySelector("body > div:last-child")
+        targetNode = document.querySelector("body > div:last-child")
 
         if (!targetNode) {
           return;
