@@ -16,6 +16,7 @@
     <script>
       function sendHeight() {
         const height = document.body.scrollHeight;
+        console.log(height)
         if (window.flutter_inappwebview) {
           window.flutter_inappwebview.callHandler('flutter_inappwebview', JSON.stringify({
             type: 'HeightHandler',
