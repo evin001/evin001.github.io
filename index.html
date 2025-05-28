@@ -27,7 +27,7 @@
         const height = document.body.scrollHeight;
         console.log(height)
         if (window.flutter_inappwebview) {
-          window.flutter_inappwebview.callHandler('flutter_inappwebview', JSON.stringify({
+          window.flutter_inappwebview.postMessage('flutter_inappwebview', JSON.stringify({
             type: 'HeightHandler',
             value: document.body.scrollHeight
           }));
@@ -39,7 +39,7 @@
 
       function onSubmit(token) {
         if (window.flutter_inappwebview) {
-          window.flutter_inappwebview.callHandler('flutter_inappwebview', JSON.stringify({
+          window.flutter_inappwebview.postMessage('flutter_inappwebview', JSON.stringify({
             type: 'captchaToken',
             value: token,
           }));
