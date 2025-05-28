@@ -41,8 +41,12 @@
         }
       }
 
+      window.onload = () => {
+        console.log('onload', document.querySelector("body > div:last-child"))
+      }
+
       const searchAndObserve = () => {
-        const targetNode = document.getElementById("body > div:last-child");
+        const targetNode = document.querySelector("body > div:last-child");
         console.log(targetNode)
         if (!targetNode) {
           return;
