@@ -41,7 +41,7 @@
         }
       }
 
-      console.log(document.querySelector("body > div:last-child"))
+      console.log(1, document.querySelector("body > div:last-child"))
 
       const searchAndObserve = () => {
         const targetNode = document.querySelector("body > div:last-child");
@@ -71,7 +71,7 @@
         const observer = new MutationObserver(callback);
 
         // Start observing the target node for configured mutations
-        observer.observe(document.querySelector(targetNode), config);
+        observer.observe(targetNode, config);
 
         return targetNode
       }
