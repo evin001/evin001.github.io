@@ -34,26 +34,14 @@
         }
       }
 
-      function sendHeight() {
-        const height = document.body.scrollHeight;
-        const data = JSON.stringify({ type: 'heightHandler', value: height })
-        if (window.CaptchaChannel) {
-          window.CaptchaChannel.postMessage(data);
-        }
+      const iframe = document.querySelector('iframe')
+
+      iframe.onload = () => {
+        console.log('load')
+
+        const body = iframe.querySelector('body')
+        console.log(body)
       }
-
-      window.onload = sendHeight;
-      window.addEventListener('resize', sendHeight);
-
-      window.addEventListener('load', () => {
-        const el = document.querySelector('.g-recaptcha > div')
-        el?.addEventListener('click', () => {
-          console.log('click')
-        })
-        document.querySelector('.g-recaptcha')?.addEventListener('click', () => {
-          console.log('click 1')
-        })
-      })
 
       function onSubmit(token) {
         const data = JSON.stringify({ type: 'captchaToken', value: token })
