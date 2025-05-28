@@ -41,9 +41,18 @@
         }
       }
 
-      window.onload = () => {
+      const timer = setInterval(searchAndObserve, 500)
+
+      const searchAndObserve = () => {
         const targetNode = document.getElementById("body > div:last-child");
         console.log(targetNode)
+        if (!targetNode) {
+          return;
+        } else if (timer) {
+          console.log('clear timer')
+          clearInterval(timer)
+        }
+
         // Options for the observer (which mutations to observe)
         const config = { attributes: true, childList: true, subtree: true };
 
