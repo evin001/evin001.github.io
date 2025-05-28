@@ -55,6 +55,7 @@
         if (!iframe) return;
 
         iframe.addEventListener('focus', () => {
+          console.log('focus')
           if (!iframeChecked) {
             iframeChecked = true;
             postFlutterMessage('captchaPopupOpened');
@@ -62,6 +63,7 @@
         });
 
         iframe.addEventListener('blur', () => {
+          console.log('blur')
           iframeChecked = false;
         });
       }
