@@ -48,6 +48,33 @@
         }
       }
 
+      let iframeChecked = false;
+
+      function monitorIframe() {
+        const iframe = document.querySelector('iframe[title="reCAPTCHA"]');
+        if (!iframe) return;
+
+        iframe.addEventListener('focus', () => {
+          if (!iframeChecked) {
+            iframeChecked = true;
+            postFlutterMessage('captchaPopupOpened');
+          }
+        });
+
+        iframe.addEventListener('blur', () => {
+          iframeChecked = false;
+        });
+      }
+
+      function postFlutterMessage(type, value = '') {
+        const msg = JSON.stringify({ type, value });
+        if (window.CaptchaChannel) {
+          window.CaptchaChannel.postMessage(data);
+        }
+      }
+
+      window.onload = monitorIframe;
+
       const searchAndObserve = () => {
         targetNode = document.querySelector("body > div:last-child")
 
