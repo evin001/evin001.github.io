@@ -41,6 +41,13 @@
         }
       }
 
+      function openPopup(top) {
+        const data = JSON.stringify({ type: 'openPopup', value: top > 0 })
+        if (window.CaptchaChannel) {
+          window.CaptchaChannel.postMessage(data);
+        }
+      }
+
       const searchAndObserve = () => {
         const targetNode = document.querySelector("body > div:last-child")
 
@@ -53,7 +60,8 @@
         const callback = (mutationList, observer) => {
           for (const mutation of mutationList) {
             if (mutation.type === "attributes") {
-              console.log(mutation.target.style.top);
+              const top = parseInt(mutation.target.style.top)
+              openPopup(top)
             }
           }
         };
