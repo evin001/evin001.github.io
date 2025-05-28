@@ -26,9 +26,8 @@
       function sendHeight() {
         const height = document.body.scrollHeight;
         const data = JSON.stringify({ type: 'heightHandler', value: height })
-
-        if (window.flutter_inappwebview?.postMessage) {
-          window.flutter_inappwebview.postMessage(data);
+        if (window.CaptchaChannel) {
+          window.CaptchaChannel.postMessage(data);
         }
       }
 
@@ -37,9 +36,8 @@
 
       function onSubmit(token) {
         const data = JSON.stringify({ type: 'captchaToken', value: token })
-
-        if (window.flutter_inappwebview?.postMessage) {
-          window.flutter_inappwebview.postMessage(data);
+        if (window.CaptchaChannel) {
+          window.CaptchaChannel.postMessage(data);
         }
       }
     </script>
