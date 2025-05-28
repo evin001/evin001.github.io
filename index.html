@@ -48,35 +48,6 @@
         }
       }
 
-      let iframeChecked = false;
-
-      function monitorIframe() {
-        const iframe = document.querySelector('iframe');
-        if (!iframe) return;
-
-        iframe.addEventListener('focus', () => {
-          console.log('focus')
-          if (!iframeChecked) {
-            iframeChecked = true;
-            postFlutterMessage('captchaPopupOpened');
-          }
-        });
-
-        iframe.addEventListener('blur', () => {
-          console.log('blur')
-          iframeChecked = false;
-        });
-      }
-
-      function postFlutterMessage(type, value = '') {
-        const msg = JSON.stringify({ type, value });
-        if (window.CaptchaChannel) {
-          window.CaptchaChannel.postMessage(data);
-        }
-      }
-
-      window.onload = monitorIframe;
-
       const searchAndObserve = () => {
         targetNode = document.querySelector("body > div:last-child")
 
