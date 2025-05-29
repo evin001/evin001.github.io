@@ -23,15 +23,12 @@
 
     <script>
       // Captcha
-      window.addEventListener("message", (event) => {
-        const data = JSON.parse(event.data);
-        if (data.type === "sitekey") {
-          grecaptcha.render('form', {
-            'sitekey': data.value,
-            'callback': verifyCallback
-          });
-        }
-      });
+      function run(apiKey) {
+        grecaptcha.render('form', {
+          'sitekey': apiKey,
+          'callback': verifyCallback
+        });
+      }
 
       // Functions called from flutter
       function setBackgroundColor(color) {
