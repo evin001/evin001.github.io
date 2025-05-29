@@ -27,7 +27,7 @@
 
       var onLoadCallback = function () {
         console.log("grecaptcha is ready!");
-        grecaptcha.render('root', {
+        grecaptcha.render('form', {
           'sitekey': findGetParameter("apiKey"),
           'callback': verifyCallback
         });
