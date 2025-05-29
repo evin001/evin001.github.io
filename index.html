@@ -3,7 +3,7 @@
   <head>
     <title>reCAPTCHA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onLoadCallback&render=explicit"></script>
   </head>
   <style>
     body {
@@ -11,15 +11,32 @@
     }
   </style>
   <body>
-    <form id="form">
-      <div class="g-recaptcha"
-           data-sitekey="6LcjBU0rAAAAANS5jFwR5fPCzchOnX04KRG0KHkJ"
-           data-callback="onSubmit">
-      </div>
-    </form>
-
     <script>
       let targetNode
+
+      function findGetParameter(parameterName) {
+        const res = window.location.search
+          .substr(1)
+          .split('&')
+          .map(p => p.split('='))
+          .find(([key, value]) => key == 'apiKey')
+        return res ? res[1] : null
+      }
+
+      var onLoadCallback = function () {
+        console.log("grecaptcha is ready!");
+        grecaptcha.render('html_element', {
+          'sitekey': findGetParameter("apiKey"),
+          'callback': verifyCallback
+        });
+      };
+
+      function verifyCallback(token) {
+        const data = JSON.stringify({ type: 'captchaToken', value: token })
+        if (window.CaptchaChannel) {
+          window.CaptchaChannel.postMessage(data);
+        }
+      }
 
       function setBackgroundColor(color) {
         document.body.style.backgroundColor = color;
@@ -31,13 +48,6 @@
           if (container) {
             container.style.height = '480px'
           }
-        }
-      }
-
-      function onSubmit(token) {
-        const data = JSON.stringify({ type: 'captchaToken', value: token })
-        if (window.CaptchaChannel) {
-          window.CaptchaChannel.postMessage(data);
         }
       }
 
