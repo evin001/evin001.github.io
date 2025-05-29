@@ -23,21 +23,15 @@
 
     <script>
       // Captcha
-      function findGetParameter(parameterName) {
-        const res = window.location.search
-          .substr(1)
-          .split('&')
-          .map(p => p.split('='))
-          .find(([key, value]) => key == 'apiKey')
-        return res ? res[1] : null
-      }
-
-      var onLoadCallback = function () {
-        grecaptcha.render('form', {
-          'sitekey': findGetParameter("apiKey"),
-          'callback': verifyCallback
-        });
-      };
+      window.addEventListener("message", (event) => {
+        const data = JSON.parse(event.data);
+        if (data.type === "sitekey") {
+          grecaptcha.render('form', {
+            'sitekey': data.value,
+            'callback': verifyCallback
+          });
+        }
+      });
 
       // Functions called from flutter
       function setBackgroundColor(color) {
