@@ -6,12 +6,22 @@
     <script src="https://www.google.com/recaptcha/api.js?onload=onLoadCallback&render=explicit"></script>
   </head>
   <style>
-    body {
+    html, body {
       margin: 0;
+      height: 100%;
+    }
+
+    .captcha-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* полная высота экрана */
     }
   </style>
   <body>
-    <form id="form"></form>
+    <div class="captcha-wrapper">
+      <form id="form"></form>
+    </div>
 
     <script>
       // Captcha
