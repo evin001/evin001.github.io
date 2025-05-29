@@ -14,8 +14,7 @@
     <form id="form"></form>
 
     <script>
-      let targetNode
-
+      // Captcha
       function findGetParameter(parameterName) {
         const res = window.location.search
           .substr(1)
@@ -26,20 +25,13 @@
       }
 
       var onLoadCallback = function () {
-        console.log("grecaptcha is ready!");
         grecaptcha.render('form', {
           'sitekey': findGetParameter("apiKey"),
           'callback': verifyCallback
         });
       };
 
-      function verifyCallback(token) {
-        const data = JSON.stringify({ type: 'captchaToken', value: token })
-        if (window.CaptchaChannel) {
-          window.CaptchaChannel.postMessage(data);
-        }
-      }
-
+      // Functions called from flutter
       function setBackgroundColor(color) {
         document.body.style.backgroundColor = color;
       }
@@ -53,12 +45,23 @@
         }
       }
 
+      // Handlers
+      function verifyCallback(token) {
+        const data = JSON.stringify({ type: 'captchaToken', value: token })
+        if (window.CaptchaChannel) {
+          window.CaptchaChannel.postMessage(data);
+        }
+      }
+
       function openPopup(top) {
         const data = JSON.stringify({ type: 'openPopup', value: top > 0 })
         if (window.CaptchaChannel) {
           window.CaptchaChannel.postMessage(data);
         }
       }
+
+      // Observe popup
+      let targetNode
 
       const searchAndObserve = () => {
         targetNode = document.querySelector("body > div:last-child")
