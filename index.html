@@ -11,6 +11,8 @@
     }
   </style>
   <body>
+    <div id="root"></div>
+
     <script>
       let targetNode
 
@@ -25,7 +27,7 @@
 
       var onLoadCallback = function () {
         console.log("grecaptcha is ready!");
-        grecaptcha.render('html_element', {
+        grecaptcha.render('root', {
           'sitekey': findGetParameter("apiKey"),
           'callback': verifyCallback
         });
